@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4536775b3e1e043b92b5578a536c5f06",
-    "content-hash": "fc51b0ba705ed1a585ecf010c5070213",
+    "hash": "f85a6eacee9e3f4129d19ccc13c67596",
+    "content-hash": "258b5623e304c9047d3a018ebde50c82",
     "packages": [
         {
             "name": "acacha/admin-lte-template-laravel",
@@ -212,6 +212,48 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
+        },
+        {
+            "name": "h2/aspect",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heinhtet123/aspect.git",
+                "reference": "777d20ec12d156f10248be8d00d674247ab1ab94"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/heinhtet123/aspect/zipball/777d20ec12d156f10248be8d00d674247ab1ab94",
+                "reference": "777d20ec12d156f10248be8d00d674247ab1ab94",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "illuminate/database": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RoleCms\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hein Htet",
+                    "email": "heinhtetstarfall@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CMS Role Based Package for Laravel Not Stand Alone Package",
+            "time": "2017-03-07 10:55:49"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -3230,7 +3272,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "h2/aspect": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

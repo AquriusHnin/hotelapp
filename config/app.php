@@ -148,6 +148,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
+        
 
         /*
          * Application Service Providers...
@@ -156,6 +157,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        RoleCms\Aspect\AspectServiceProvider::class,
+
 
     ],
 
@@ -203,6 +206,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'AdminLTE'=>Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
+        "Aspect" => RoleCms\Aspect\AspectFacade::class,
+
 
     ],
 

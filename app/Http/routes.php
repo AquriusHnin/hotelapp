@@ -11,6 +11,27 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/','Auth\AuthController@getlogin');
+
+
+Route::group(['prefix'=>"backend",'middleware'=>['auth']],
+function()
+{
+		// resources
+		Route::resource('roomtype','Backend\RoomTypesController');
+		Route::resource('account','Backend\AccountsController');
+		
+
+		// get
+		Route::get('/',['as'=>'backend.index','uses'=>'HomeController@index']);
+		Route::get('rolespermission',['as'=>"backend.rolespermission","uses"=>"Backend\RolePermissionController@index"]);
+
+		//post
+
+
+		//put
 });
