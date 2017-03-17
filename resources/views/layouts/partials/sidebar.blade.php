@@ -31,7 +31,7 @@
 
 
              {{-- Roomtypes --}}
-            <li  class="active"  class="treeview" >
+            <li @if (Request::is('backend/roomtype*')) class="active" @endif class="treeview">
                 <a href="#">
                     <i class="fa fa-bed"></i> <span>RoomTypes</span>
                     <i class="fa fa-angle-left pull-right"></i>
@@ -44,8 +44,8 @@
 
                 {{-- Accounts --}}
 
-            <li  class="active"  class="treeview" >
-                <a href="#">
+           <li @if (Request::is('backend/account*')) class="active" @endif class="treeview">
+                <a href="#" class="sidebar-toogle">
                     <i class="fa fa-users"></i> <span>Users</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
@@ -55,12 +55,16 @@
                 </ul>
             </li>
 
+            {{-- Booking --}}
 
-            <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.multilevel') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+           <li @if (Request::is('backend/booking*')) class="active" @endif class="treeview">
+                <a href="#" class="sidebar-toogle">
+                    <i class="fa fa-list-alt"></i> <span>Booking</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
                 <ul class="treeview-menu">
-                    <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
-                    <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
+                    <li @if (Request::is('backend/booking')) class="active" @endif><a href="{{ url('backend/booking') }}"><i class="fa fa-dot-circle-o"></i> All Booking</a></li>
+                    <li @if (Request::is('backend/roomtype/create')) class="active" @endif><a href="{{ url('backend/booking/create') }}"><i class="fa fa-dot-circle-o"></i> Add Booking</a></li>
                 </ul>
             </li>
 

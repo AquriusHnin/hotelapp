@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Room;
+use App\Booking;
 
 class RoomType extends Model
 {
@@ -14,4 +15,9 @@ class RoomType extends Model
      {
      	return $this->hasMany(Room::class,'roomtype_id'); 
      }
+
+     public function bookings(){
+
+		return $this->hasMany(Booking::class,'roomtype_id');
+	}
 }

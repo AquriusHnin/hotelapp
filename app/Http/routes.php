@@ -24,6 +24,7 @@ function()
 		// resources
 		Route::resource('roomtype','Backend\RoomTypesController');
 		Route::resource('account','Backend\AccountsController');
+		Route::resource('booking','Backend\BookingController');
 		
 
 		// get
