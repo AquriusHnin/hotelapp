@@ -16,6 +16,7 @@ class CreateBookingsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('roomtype_id');
+            $table->integer('room_id');
             $table->integer('no_days');
             $table->boolean('status');
             $table->date('check_in');

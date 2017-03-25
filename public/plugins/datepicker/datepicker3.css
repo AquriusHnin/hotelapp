@@ -120,7 +120,7 @@
 .datepicker table tr td.disabled,
 .datepicker table tr td.disabled:hover {
   background: none;
-  color: #444;
+  color: #DCDCDC !important;
   cursor: default;
 }
 .datepicker table tr td.today,
@@ -744,7 +744,7 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.active {
   border-radius: 0 3px 3px 0;
 }
 .input-daterange .input-group-addon {
-  width: auto;
+  
   min-width: 16px;
   padding: 4px 5px;
   font-weight: normal;
@@ -753,7 +753,7 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.active {
   text-shadow: 0 1px 0 #fff;
   vertical-align: middle;
   background-color: #eeeeee;
-  border: solid #cccccc;
+  border: 1px solid #cccccc !important;
   border-width: 1px 0;
   margin-left: -5px;
   margin-right: -5px;

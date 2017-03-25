@@ -24,6 +24,8 @@
                                                 
                                                 <th rowspan="1" colspan="1">RoomType</th>
 
+                                                <th rowspan="1" colspan="1">Room No</th>
+
                                                 <th rowspan="1" colspan="1">Status</th>
                                             
                                                 <th rowspan="1" colspan="1">Check_in</th>
@@ -42,10 +44,16 @@
 
                                              		<td>{{  $booking->id }}</td>
                                                     
-
-                                                    <td>{{  $booking->user->name }}</td>
+                                                    @if(!empty($booking->user->name))
+                                                        <td>{{  $booking->user->name }}</td>
+                                                    @endif
 
                                                     <td>{{  $booking->roomtype_id }}</td>
+
+                                                    @if(!empty($booking->room))
+                                                    <td>{{  $booking->room->room_no }}</td>
+                                                    @endif
+
 
                                                     <td>{{  $booking->status }}</td>
 

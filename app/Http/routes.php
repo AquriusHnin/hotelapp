@@ -24,15 +24,24 @@ function()
 		// resources
 		Route::resource('roomtype','Backend\RoomTypesController');
 		Route::resource('account','Backend\AccountsController');
-		Route::resource('booking','Backend\BookingController');
+		
 		
 
 		// get
 		Route::get('/',['as'=>'backend.index','uses'=>'HomeController@index']);
 		Route::get('rolespermission',['as'=>"backend.rolespermission","uses"=>"Backend\RolePermissionController@index"]);
 
+		
+		Route::get('booking',['as'=>"backend.booking.index","uses"=>"Backend\BookingController@index"]);
+		Route::get('booking/create',['as'=>"backend.booking.create","uses"=>"Backend\BookingController@create"]);
+		
 		//post
-
+		Route::post('booking/store',['as'=>"backend.booking.store","uses"=>"Backend\BookingController@store"]);
+		Route::post('booking/getBookingDate',['as'=>"backend.booking.getBookingDate","uses"=>"Backend\BookingController@getBookingDate"]);
 
 		//put
+
+
+		//delete
+		Route::delete('booking/destroy',['as'=>"backend.booking.destroy","uses"=>"Backend\BookingController@destroy"]);
 });

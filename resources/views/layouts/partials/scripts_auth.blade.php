@@ -4,3 +4,8 @@
 <script src="{{ asset('/js/bootstrap.min.js') }}" type="text/javascript"></script>
 <!-- iCheck -->
 <script src="{{ asset('/plugins/iCheck/icheck.min.js') }}" type="text/javascript"></script>
+
+<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script> 
+
+<!-- datepicker -->
+ <script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js') }}"></script>
