@@ -35,9 +35,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 </div><!-- ./wrapper -->
 
+    
+
 @section('scripts')
     @include('layouts.partials.scripts')
 @show
+
+@yield('js')
 
 </body>
 
