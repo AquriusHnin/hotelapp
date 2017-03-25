@@ -9,7 +9,7 @@ use App\Booking;
 class RoomType extends Model
 {
      protected $table = 'roomtypes';
-     protected $fillable = ['name'];
+     protected $fillable = ['name','features','bed_no','count','price','image'];
 
      public function rooms()
      {

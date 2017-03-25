@@ -10,7 +10,7 @@ class Room extends Model
 {
   
     protected $table = 'rooms';
-    protected $fillable=["room_no","roomtypes_id",""];
+    protected $fillable=["room_no","roomtypes_id"];
 
     public function roomtype()
 	{

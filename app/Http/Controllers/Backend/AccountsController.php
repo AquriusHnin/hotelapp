@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\RolesRequest;
+use App\Http\Requests\AccountsRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Role;
@@ -44,7 +44,7 @@ class AccountsController extends Controller
     }
 
 
-    public function store(RolesRequest $request)
+    public function store(AccountsRequest $request)
     {
         //
         $this->account->create($request->all());
