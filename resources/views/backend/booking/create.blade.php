@@ -113,6 +113,10 @@ $("#checkout").prop('disabled', true);
                    $("#checkin").prop('disabled', false);
                    $("#checkout").prop('disabled', false);   
 
+
+                  console.log(data);
+
+
                    $("#sandbox-container .input-group").datepicker({
                     format:"yyyy-mm-dd",
                     autoclose: true,

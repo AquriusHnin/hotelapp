@@ -61,7 +61,7 @@ class BookingController extends Controller
           or (check_in < "'.$checkin.'" and check_out > "'.$checkout.'") ) as b where b.roomtype_id='.$roomtype.' ');
       
     $booked_rooms = json_decode(json_encode($booked_rooms), true);
-      
+    
     $rooms_tobook=Room::select('id')->where('roomtypes_id',$roomtype)->whereNotIn('id',$booked_rooms)->first();
 
       if(!empty($rooms_tobook))
@@ -75,7 +75,7 @@ class BookingController extends Controller
 
           foreach ($dates as $key => $value) {
 
-            $condition=BookingDetails::create(['booking_id'=>$booked->id,"booking_date"=>$dates[$key]]);
+            $condition=BookingDetails::create(['booking_id'=>$booked->id,"roomtypes_id"=>$roomtype,"booking_date"=>$dates[$key]]);
           }
 
           if($condition)
@@ -88,7 +88,7 @@ class BookingController extends Controller
       }
         
       
-
+      //end of store function
     }
 
     public function destroy(Reqest $request)
@@ -101,28 +101,30 @@ class BookingController extends Controller
         
         if($request->ajax())
         {
-          // $encryptedValue=$request->input("_token");
-          // $decrypted = Crypt::decrypt($encryptedValue);
-          // dd($decrypted);
-
-          $roomtype=$request->input("roomtype");
+         
+          $roomtype=(int)$request->input("roomtype");
           
           $dates=array();
-          $rooms=Room::where("roomtypes_id",$roomtype)->get();
+          $rooms=Room::select("id")->where("roomtypes_id",$roomtype)->get();
 
-          $booking_room=Booking::select("check_in","check_out")->whereIn("room_id",$rooms)->where("status",1)->orWhere("status",2)->get();
           
+
+          $booking_room=BookingDetails::select('booking_date')->where("roomtypes_id",$roomtype)->groupBy('booking_date')->havingRaw('COUNT(booking_date) > 4')->get();
+
           foreach ($booking_room as $key => $value) {
-            # code...
-            $date=$this->generate_booking_date($value->check_in,$value->check_out);
-            $dates=array_merge($dates,$date);
+              $dates[$key]=$value->booking_date;
           }
+
+
+          // $booking_duplicate=BookingDetails::where()->get();
+          
 
           return response()->json($dates);
           exit();
         }
 
     }
+
 
 
 }

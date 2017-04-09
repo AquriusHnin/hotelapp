@@ -9,7 +9,9 @@ class BookingDetails extends Model
 {
     //
     protected $table="bookingdetails";
-    protected $fillable = ['booking_id','booking_date'];
+    protected $fillable = ['booking_id','roomtypes_id','booking_date'];
     public $timestamps = false;
-   
+   	
+
+
 }
