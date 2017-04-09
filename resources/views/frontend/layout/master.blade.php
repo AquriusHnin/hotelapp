@@ -1,10 +1,3 @@
-@inject('user','Illuminate\Auth\Guard')
-<?php 
-    
-    $user_name=$user->user()->name; 
-    $user_role=$user->user()->role['id'];
-    
-?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -18,11 +11,27 @@
 
      @include('frontend.partials.nav')
 
+
+     <!-- Main content -->
      <section class="content">
-         @yield('main-content')
-     </section>
+     	 <!-- Your Page Content Here -->
+         @yield('main-content')<!-- /.content -->
+     </section><!-- /.content-wrapper -->
 
      @include('frontend.partials.footer')
+
+
+
+    @include('frontend.partials.js')
+
+
+    @yield('js')
+
+    <!-- custom js functions -->
+    @yield('script')
+    <!-- ./custom js functions -->
+
+
 
 </body>
 

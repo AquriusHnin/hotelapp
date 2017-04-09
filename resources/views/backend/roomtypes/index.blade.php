@@ -52,7 +52,7 @@
                                                     <td>${{  $roomtype->price }}</td>
 
                                                     <td>
-                                                    	<img src="{{ asset($roomtype->image) }}">
+                                                    	<img src="{{ asset($roomtype->image) }}" width="100px" height="50px">
                                                     </td>
 
                                                     <td>    <form action="{{ route('backend.roomtype.edit',['id'=>$roomtype->id]) }}"   method="GET">  

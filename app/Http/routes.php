@@ -18,6 +18,34 @@
 Route::get('/','Auth\AuthController@getlogin');
 
 
+Route::group(['prefix'=>"frontend"],function()
+{	
+	//get
+	Route::get('/', function()
+	{	
+    return View::make('frontend.index');
+	});
+
+	Route::get('gallery', function()
+	{
+    return View::make('frontend.gallery');
+	});
+	Route::get('contact', function()
+	{
+    return View::make('frontend.contact');
+	});
+
+
+	//resource
+	Route::resource('rooms','Frontend\RoomsController');
+	Route::resource('services','Frontend\ServicesController');
+
+});
+
+
+
+
+
 Route::group(['prefix'=>"backend",'middleware'=>['auth']],
 function()
 {

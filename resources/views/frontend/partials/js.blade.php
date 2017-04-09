@@ -1,24 +1,24 @@
-<script src="{{ asset('assets/jquery.js')}}"></script>
+<script src="{{ asset('js/jquery.js')}}"></script>
 
 <!-- wow script -->
-<script src="{{ asset('assets/wow/wow.min.js ')}}"></script>
+<script src="{{ asset('plugins/wow/wow.min.js ')}}"></script>
 
 <!-- uniform -->
-<script src="{{ asset('assets/uniform/js/jquery.uniform.js ')}}"></script>
+<script src="{{ asset('plugins/uniform/js/jquery.uniform.js ')}}"></script>
 
 
 <!-- boostrap -->
-<script src="{{ asset(' assets/bootstrap/js/bootstrap.js ')}}" type="text/javascript" ></script>
+<script src="{{ asset('js/bootstrap.js ')}}" type="text/javascript" ></script>
 
 <!-- jquery mobile -->
-<script src="{{ asset(' assets/mobile/touchSwipe.min.js ')}}"></script>
+<script src="{{ asset('plugins/mobile/touchSwipe.min.js ')}}"></script>
 
 <!-- jquery mobile -->
-<script src="{{ asset(' assets/respond/respond.js ')}}"></script>
+<script src="{{ asset('plugins/respond/respond.js ')}}"></script>
 
 <!-- gallery -->
-<script src="{{ asset(' assets/gallery/jquery.blueimp-gallery.min.js ')}}"></script>
+<script src="{{ asset('plugins/gallery/jquery.blueimp-gallery.min.js ')}}"></script>
 
 
 <!-- custom script -->
-<script src="{{ asset(' assets/script.js ')}}"></script>
+<script src="{{ asset('js/script.js ')}}"></script>
