@@ -24,16 +24,12 @@ class BookingRequest extends Request
     {
         return [
             'customer_name' => 'required',
-            'email' => 'required|unique:users',
+            'email' => 'required',
             'roomtype_id' => 'required'
         ];
     }
 
-    public function messages(){
-        return[
-        "email.unique"=>"Email has been taken by someone!Please Type Something Else"
-        ];
-    }
+   
 
 
 
