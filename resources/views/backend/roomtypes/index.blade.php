@@ -52,6 +52,7 @@
                                                     <td>${{  $roomtype->price }}</td>
 
                                                     <td>
+                                                    {{-- change the directory instead of saving directory to database! --}}
                                                     	<img src="{{ asset($roomtype->image) }}" width="100px" height="50px">
                                                     </td>
 

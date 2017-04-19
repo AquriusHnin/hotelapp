@@ -23,22 +23,32 @@ Route::group(['prefix'=>"frontend"],function()
 	//get
 	Route::get('/', function()
 	{	
-    return View::make('frontend.index');
+		return View::make('frontend.index');
 	});
 
 	Route::get('gallery', function()
 	{
-    return View::make('frontend.gallery');
+		return View::make('frontend.gallery');
 	});
 	Route::get('contact', function()
 	{
-    return View::make('frontend.contact');
+		return View::make('frontend.contact');
 	});
 
+	Route::get('services', function()
+	{
+		return View::make('frontend.services');
+	});
 
 	//resource
 	Route::resource('rooms','Frontend\RoomsController');
-	Route::resource('services','Frontend\ServicesController');
+	Route::resource('services','Frontend\BarserviceController');
+
+
+	Route::get('contact',['as'=>"frontend.aboutController.create","uses"=>"Frontend\AboutController@create"]);
+
+	Route::post('contact/store',['as'=>"frontend.aboutController.store","uses"=>"Frontend\AboutController@store"]);
+	
 
 });
 
@@ -47,8 +57,8 @@ Route::group(['prefix'=>"frontend"],function()
 
 
 Route::group(['prefix'=>"backend",'middleware'=>['auth']],
-function()
-{
+	function()
+	{
 		// resources
 		Route::resource('roomtype','Backend\RoomTypesController');
 		Route::resource('account','Backend\AccountsController');
@@ -72,4 +82,4 @@ function()
 
 		//delete
 		Route::delete('booking/destroy',['as'=>"backend.booking.destroy","uses"=>"Backend\BookingController@destroy"]);
-});
+	});

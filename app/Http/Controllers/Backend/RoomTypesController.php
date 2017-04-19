@@ -50,12 +50,23 @@ use App\RoomType;
   {
 
     
-    $imageName = $request->file('image')->getClientOriginalName();
-    $path = base_path() . '/public/img/frontendrooms/';
-    $request->file('image')->move($path , $imageName);
+    //check the post method if ($request->isMethod('post')) {
 
-    $this->roomtype->create($request->all());
-    return redirect()->view('backend.roomtypes.index');
+
+    $imageName = $request->file('image')->getClientOriginalName();
+    $data_create=["name"=>$request->input('name'),"features"=>$request->input('features'),"bed_no"=>(int)$request->input('bed_no'),"count"=>(int)$request->input('count'),"price"=>(double)$request->input('price'),"image"=>$imageName];
+    
+    $path = base_path() . '/public/img/frontendrooms/';
+    // chmod
+    $request->file('image')->move($path , $imageName);
+    
+
+    if($this->roomtype->create($data_create))
+    {
+      return redirect()->route('backend.roomtype.index');
+    }
+
+    // end of method
   }
 
 
@@ -65,7 +76,8 @@ use App\RoomType;
 
     $roomtypes->update($request->all());
 
-    return redirect()->route('backend.roomtypes.index');
+    
+    return redirect()->route('backend.roomtype.index');
   }
 
   public function destroy($id)
@@ -74,7 +86,7 @@ use App\RoomType;
 
     $roomtypes->delete();
 
-    return redirect()->route('backend.roomtypes.index');
+    return redirect()->route('backend.roomtype.index');
 
     
   }

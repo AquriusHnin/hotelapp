@@ -5,9 +5,10 @@
 
 	<div class="container">
 
-       <h1 class="title">Gallery</h1>
+       <h1 class="title">Services</h1>
        <div class="row gallery">
-              <div class="col-sm-3 wowload fadeInUp"><a href="{{asset('img/images/photos/a.jpg') }}" title="Foods" class="gallery-image" data-gallery><img src="{{asset('img/images/photos/a.jpg') }}" class="img-responsive"></a></div>
+              <div class="col-sm-3 wowload fadeInUp"><a href="{{asset('img/images/photos/a.jpg') }}" title="Foods" class="gallery-image" data-gallery><img src="{{asset('img/images/photos/a.jpg') }}" class="img-responsive"></a>
+              </div>
 
               <div class="col-sm-3 wowload fadeInUp"><a href="{{asset('img/images/photos/b.jpg') }}" title="Coffee" class="gallery-image" data-gallery><img src="{{asset('img/images/photos/b.jpg') }}" class="img-responsive"></a></div>
 

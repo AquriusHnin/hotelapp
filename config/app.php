@@ -207,6 +207,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'AdminLTE'=>Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
         "Aspect" => RoleCms\Aspect\AspectFacade::class,
+        'Form'=> 'Illuminate\Html\FormFacade'
 
 
     ],
