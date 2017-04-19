@@ -32,6 +32,7 @@
 
                                                 <th rowspan="1" colspan="1">Check_out</th>
 
+
                                                 <th rowspan="1" colspan="1">Action</th>
 
                                             </tr>
@@ -55,23 +56,39 @@
                                                     @endif
 
 
-                                                    <td>{{  $booking->status }}</td>
+                                                    <td>
+                                                        @if($booking->status==1)
+                                                            <a href="" class="btn btn-success checkout form-control" data-id={{ $booking->id }} data-target="#myModal" data-toggle="modal">Check Out</a>
+                                                        @else 
+                                                            <a href="" class="btn btn-info form-control" data-toggle="modal">Check In</a>
+                                                        @endif
+                                                        
+                                                   
+                                                    </td>
 
                                                     <td>{{  $booking->check_in }}</td>
 
                                                     <td>{{  $booking->check_out }}</td>
 
 
-                                                    <td>    <form action="{{ route('backend.booking.destroy',['id'=>$booking->id]) }}" method="POST">  
-                                                    
-                                                        <button class="btn btn-danger">
-                                                                <i class="fa fa-btn fa-trash"></i>Delete
-                                                        </button>
+                                                    <td>    
+                                                       
+                                                        
 
-                                                            {{ csrf_field() }}
-                                                            
-                                                            {{ method_field('DELETE') }}
-                                                            </form>   
+
+                                                        </br>
+                                                        
+                                                        <form action="{{ route('backend.booking.destroy',['id'=>$booking->id]) }}" method="POST">  
+                                                        
+                                                            <button class="form-control btn btn-danger">
+                                                                    <i class="fa fa-btn fa-trash"></i>Delete
+                                                            </button>
+
+                                                                {{ csrf_field() }}
+                                                                
+                                                                {{ method_field('DELETE') }}
+                                                        </form>   
+
                                                     </td> 
                                                     
                                                     
@@ -104,4 +121,39 @@
         </div>
 
 
+    <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Modal Header</h4>
+                </div>
+
+                <div class="modal-body">
+                  <p>Some text in the modal.</p>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+
+              </div>
+              
+            </div>
+  </div>
+
+@endsection
+
+@section("js")
+<script>
+    "use strict";
+    $(".checkout").on("click",function(e){
+          let Id = $(this).data('id');
+         alert(Id);
+    });
+    
+
+</script>
 @endsection

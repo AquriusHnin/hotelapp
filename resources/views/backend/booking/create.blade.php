@@ -101,6 +101,8 @@ $("#checkout").prop('disabled', true);
 
 
  	$("#select_roomtype").on("change",function(e){
+
+
          	$.ajax({
                 url:registerpost_url,
                 type:"POST",
@@ -110,27 +112,33 @@ $("#checkout").prop('disabled', true);
                 success:function(data)
                 {
                    
-                   $("#checkin").prop('disabled', false);
-                   $("#checkout").prop('disabled', false);   
+                        $("#checkin").prop('disabled', false);
+                        $("#checkout").prop('disabled', false);   
 
 
-                  console.log(data);
+                    
+                        console.log(data);
+                    
 
+                        $('#sandbox-container .input-group').datepicker('remove');
 
-                   $("#sandbox-container .input-group").datepicker({
-                    format:"yyyy-mm-dd",
-                    autoclose: true,
-                    datesDisabled:data,
-                    startDate: today,
-                    endDate:endday,
-                    maxViewMode: 1
+                        $("#sandbox-container .input-group").datepicker({
+                        format:"yyyy-mm-dd",
+                        autoclose: true,
+                        datesDisabled:data,
+                        startDate: today,
+                        endDate:endday,
+                        maxViewMode: 1
 
-                    });
- 
+                        });
+
+                        
+                     
 
                    
                 }
             });
+
  	});
 
 
