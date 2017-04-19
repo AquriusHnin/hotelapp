@@ -73,7 +73,8 @@
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Create</button>
-                        <a  class="btn btn-default">Cancel</a>
+                        <button type="reset" class="btn btn-default">Create</button>
+                        
                     </div>
             </div>
         </form>

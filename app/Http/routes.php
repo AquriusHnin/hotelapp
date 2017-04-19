@@ -21,11 +21,7 @@ Route::get('/','Auth\AuthController@getlogin');
 Route::group(['prefix'=>"frontend"],function()
 {	
 	//get
-	Route::get('/', function()
-	{	
-		return View::make('frontend.index');
-	});
-
+	
 	Route::get('gallery', function()
 	{
 		return View::make('frontend.gallery');
@@ -41,6 +37,8 @@ Route::group(['prefix'=>"frontend"],function()
 	});
 
 	//resource
+
+
 	Route::resource('rooms','Frontend\RoomsController');
 	Route::resource('services','Frontend\BarserviceController');
 
@@ -49,6 +47,13 @@ Route::group(['prefix'=>"frontend"],function()
 
 	Route::post('contact/store',['as'=>"frontend.aboutController.store","uses"=>"Frontend\AboutController@store"]);
 	
+	// index page
+
+	Route::get('/',['as'=>"frontend.customerbooking.create","uses"=>"Frontend\CustomerBookingController@create"]);
+
+	Route::post('customerbooking/store',['as'=>"frontend.customerbooking.store","uses"=>"Frontend\CustomerBookingController@store"]);
+
+	Route::post('customerbooking/getBookingDate',['as'=>"frontend.customerbooking.getBookingDate","uses"=>"Frontend\CustomerBookingController@getBookingDate"]);
 
 });
 
@@ -76,7 +81,7 @@ Route::group(['prefix'=>"backend",'middleware'=>['auth']],
 		//post
 		Route::post('booking/store',['as'=>"backend.booking.store","uses"=>"Backend\BookingController@store"]);
 		Route::post('booking/getBookingDate',['as'=>"backend.booking.getBookingDate","uses"=>"Backend\BookingController@getBookingDate"]);
-
+		Route::post('booking/getAjax',['as'=>"backend.booking.getAjax","uses"=>"Backend\BookingController@getAjax"]);
 		//put
 
 

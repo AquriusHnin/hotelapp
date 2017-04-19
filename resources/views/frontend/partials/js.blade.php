@@ -22,3 +22,11 @@
 
 <!-- custom script -->
 <script src="{{ asset('js/script.js ')}}"></script>
+
+
+<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script> 
+
+<!-- datepicker -->
+ <script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js') }}"></script>
+
+

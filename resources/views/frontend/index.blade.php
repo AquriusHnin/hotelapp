@@ -18,140 +18,228 @@
 
 <!-- reservation-information -->
 <div id="information" class="spacer reserve-info ">
-<div class="container">
-<div class="row">
-<div class="col-sm-7 col-md-8">
-    <img src="{{ asset('img/images/photos/hh1.jpg') }}" class="img-responsive" >
-</div>
-<div class="col-sm-5 col-md-4">
-<h3>Reservation</h3>
-    <form role="form" class="wowload fadeInRight">
-        <div class="form-group">
-            <input type="text" class="form-control"  placeholder="Name">
-        </div>
-        <div class="form-group">
-            <input type="email" class="form-control"  placeholder="Email">
-        </div>       
-        <div class="form-group">
-            <div class="row">
-            <div class="col-xs-12">
-            <select class="form-control">
-              <option>No. of Rooms</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-            </div>        
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7 col-md-8">
+                <img src="{{ asset('img/images/photos/hh1.jpg') }}" class="img-responsive" >
             </div>
-        </div>
-        <div class="form-group">
-            <div class="row">
-            <div class="col-xs-6">
-              <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
-                <option>Stat Date</option>
-                <option value="01">1</option>
-                <option value="02">2</option>
-                <option value="03">Mar (03)</option>
-                <option value="04">Apr (04)</option>
-                <option value="05">May (05)</option>
-                <option value="06">June (06)</option>
-                <option value="07">July (07)</option>
-                <option value="08">Aug (08)</option>
-                <option value="09">Sep (09)</option>
-                <option value="10">Oct (10)</option>
-                <option value="11">Nov (11)</option>
-                <option value="12">Dec (12)</option>
-              </select>
-            </div>
-            <div class="col-xs-6">
-              <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
-                <option>End Date</option>
-                <option value="01">Jan (01)</option>
-                <option value="02">Feb (02)</option>
-                <option value="03">Mar (03)</option>
-                <option value="04">Apr (04)</option>
-                <option value="05">May (05)</option>
-                <option value="06">June (06)</option>
-                <option value="07">July (07)</option>
-                <option value="08">Aug (08)</option>
-                <option value="09">Sep (09)</option>
-                <option value="10">Oct (10)</option>
-                <option value="11">Nov (11)</option>
-                <option value="12">Dec (12)</option>
-              </select>
-            </div>
-            
-          </div>
-        </div>
-        <button class="btn btn-default">Submit</button>
-    </form>    
-</div>
-</div>  
-</div>
-</div>
-<!-- reservation-information -->
+            <div class="col-sm-5 col-md-4">
+                <h3>Reservation</h3>
 
-
-
-<!-- services -->
-<div class="spacer services wowload fadeInUp">
-<div class="container">
-    <div class="row">
-        <div class="col-sm-4">
-            <!-- RoomCarousel -->
-            <div id="RoomCarousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                <div class="item active"><img src="{{ asset ('img/images/photos/r1.jpg') }}" class="img-responsive" alt="slide"></div>                
-                <div class="item  height-full"><img src="{{asset('img/images/photos/r2.jpg') }}"  class="img-responsive" alt="slide"></div>
-                <div class="item  height-full"><img src="{{ asset('img/images/photos/r3.jpg') }}"  class="img-responsive" alt="slide"></div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        @if (Session::has('create_message'))
+                        <div class="alert alert-success alert-dismissible">
+                            {{ Session::get('create_message') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        </div>
+                        @endif
+                    </div>
                 </div>
-                <!-- Controls -->
-                <a class="left carousel-control" href="#RoomCarousel" role="button" data-slide="prev"><i class="fa fa-angle-left"></i></a>
-                <a class="right carousel-control" href="#RoomCarousel" role="button" data-slide="next"><i class="fa fa-angle-right"></i></a>
-            </div>
-            <!-- RoomCarousel-->
-            <div class="caption">Rooms<a href="#" class="pull-right"><i class="fa fa-edit"></i></a></div>
-        </div>
+
+                <form role="form" action="{{ route('frontend.customerbooking.store') }}" method="post" class="wowload fadeInRight">
+                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                   @if($errors->has('customer_name'))
+                   <div class="form-group has-feedback has-error">
+                    <label class="control-label" for="batch_name"><i class="fa fa-times-circle-o"></i> {{ $errors->first('customer_name') }}</label>
+                    @else
+
+                    <div class="form-group">
+                      <label for="customer_name">Customer Name</label>
+                      @endif
+                      <input type="text" name="customer_name" class="form-control" id="customer_name" placeholder="Enter Customer Name">
+                  </div>
+
+                  @if($errors->has('email'))
+                  <div class="form-group has-feedback has-error">
+                    <label class="control-label" for="customer_email"><i class="fa fa-times-circle-o"></i> {{ $errors->first('email') }}</label>
+                    @else
+                    <div class="form-group">
+                        <label for="email">Customer Email</label>
+                        @endif
+                        <input type="text" name="email" class="form-control" id="email" placeholder="Enter Customer Email">
+                    </div>
+
+                    @if($errors->has('roomtype_id'))
+                    <div class="form-group has-feedback has-error">
+                        <label class="control-label" for="customer_email"><i class="fa fa-times-circle-o"></i> {{ $errors->first('roomtype_id') }}</label>
+                        @else
+                        <div class="form-group">
+                            <label for="select_roomtype">RoomType</label>
+                            @endif
+                            <select class="form-control" name="roomtype_id" id="select_roomtype">
+                                <option value="" selected hidden>Please Select RoomType</option>
+                                @foreach($roomtypes as $key=>$roomtype)
+                                <option value="{{$key}}">{{$roomtype}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        @if($errors->has('start_month'))
+                        <div class="form-group has-feedback has-error">
+                            <label class="control-label" for="start_month"><i class="fa fa-times-circle-o"></i> {{ $errors->first('start_month') }}</label>
+                            @else
+                            <div class="form-group" id="sandbox-container">
+
+                                @endif
+
+                                <div class="input-daterange input-group" id="datepicker">
+
+                                    <span class="input-group-addon">CheckIn</span>
+                                    <input type="text" class="input-sm form-control" id="checkin" name="checkin">
+                                    <span class="input-group-addon">CheckOut</span>
+                                    <input type="text" class="input-sm form-control" id="checkout" name="checkout">
+                                </div>
+                            </div>
 
 
-        <div class="col-sm-4">
-            <!-- RoomCarousel -->
-            <div id="TourCarousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                <div class="item active"><img src="{{ asset ('img/images/photos/h1.jpg') }}" class="img-responsive" alt="slide"></div>                
-                <div class="item  height-full"><img src="{{asset('img/images/photos/h2.jpg') }}"  class="img-responsive" alt="slide"></div>
-                <div class="item  height-full"><img src="{{ asset('img/images/photos/h3.jpg') }}"  class="img-responsive" alt="slide"></div>
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">Create</button>
+
+                                <button type="reset" class="btn btn-default">Cancel</button>
+                            </div>
+                        </div>
+                    </form>    
                 </div>
-                <!-- Controls -->
-                <a class="left carousel-control" href="#TourCarousel" role="button" data-slide="prev"><i class="fa fa-angle-left"></i></a>
-                <a class="right carousel-control" href="#TourCarousel" role="button" data-slide="next"><i class="fa fa-angle-right"></i></a>
-            </div>
-            <!-- RoomCarousel-->
-            <div class="caption">Spa<a href="#" class="pull-right"><i class="fa fa-edit"></i></a></div>
-        </div>
-
-
-        <div class="col-sm-4">
-            <!-- RoomCarousel -->
-             <div id="FoodCarousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                <div class="item active"><img src="{{ asset ('img/images/photos/f2.jpg') }}" class="img-responsive" alt="slide"></div>
-                <div class="item  height-full"><img src="{{ asset ('img/images/photos/7.jpg') }}"  class="img-responsive" alt="slide"></div>
-                <div class="item  height-full"><img src="{{ asset ('img/images/photos/5.jpg') }}"  class="img-responsive" alt="slide"></div>
-                </div>
-                <!-- Controls -->
-                <a class="left carousel-control" href="#FoodCarousel" role="button" data-slide="prev"><i class="fa fa-angle-left"></i></a>
-                <a class="right carousel-control" href="#FoodCarousel" role="button" data-slide="next"><i class="fa fa-angle-right"></i></a>
-            </div>
-            <!-- RoomCarousel-->
-            <div class="caption">Food and Drinks<a href="#" class="pull-right"><i class="fa fa-edit"></i></a></div>
+            </div>  
         </div>
     </div>
-</div>
-</div>
-<!-- services -->
+    <!-- reservation-information -->
 
 
 
-@endsection
+    <!-- services -->
+    <div class="spacer services wowload fadeInUp">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <!-- RoomCarousel -->
+                    <div id="RoomCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active"><img src="{{ asset ('img/images/photos/r1.jpg') }}" class="img-responsive" alt="slide"></div>                
+                            <div class="item  height-full"><img src="{{asset('img/images/photos/r2.jpg') }}"  class="img-responsive" alt="slide"></div>
+                            <div class="item  height-full"><img src="{{ asset('img/images/photos/r3.jpg') }}"  class="img-responsive" alt="slide"></div>
+                        </div>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#RoomCarousel" role="button" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+                        <a class="right carousel-control" href="#RoomCarousel" role="button" data-slide="next"><i class="fa fa-angle-right"></i></a>
+                    </div>
+                    <!-- RoomCarousel-->
+                    <div class="caption">Rooms<a href="#" class="pull-right"><i class="fa fa-edit"></i></a></div>
+                </div>
+
+
+                <div class="col-sm-4">
+                    <!-- RoomCarousel -->
+                    <div id="TourCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active"><img src="{{ asset ('img/images/photos/h1.jpg') }}" class="img-responsive" alt="slide"></div>                
+                            <div class="item  height-full"><img src="{{asset('img/images/photos/h2.jpg') }}"  class="img-responsive" alt="slide"></div>
+                            <div class="item  height-full"><img src="{{ asset('img/images/photos/h3.jpg') }}"  class="img-responsive" alt="slide"></div>
+                        </div>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#TourCarousel" role="button" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+                        <a class="right carousel-control" href="#TourCarousel" role="button" data-slide="next"><i class="fa fa-angle-right"></i></a>
+                    </div>
+                    <!-- RoomCarousel-->
+                    <div class="caption">Spa<a href="#" class="pull-right"><i class="fa fa-edit"></i></a></div>
+                </div>
+
+
+                <div class="col-sm-4">
+                    <!-- RoomCarousel -->
+                    <div id="FoodCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active"><img src="{{ asset ('img/images/photos/f2.jpg') }}" class="img-responsive" alt="slide"></div>
+                            <div class="item  height-full"><img src="{{ asset ('img/images/photos/7.jpg') }}"  class="img-responsive" alt="slide"></div>
+                            <div class="item  height-full"><img src="{{ asset ('img/images/photos/5.jpg') }}"  class="img-responsive" alt="slide"></div>
+                        </div>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#FoodCarousel" role="button" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+                        <a class="right carousel-control" href="#FoodCarousel" role="button" data-slide="next"><i class="fa fa-angle-right"></i></a>
+                    </div>
+                    <!-- RoomCarousel-->
+                    <div class="caption">Food and Drinks<a href="#" class="pull-right"><i class="fa fa-edit"></i></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- services -->
+
+
+
+    @endsection
+
+    @section("js")
+    <script>
+        "use strict";
+
+        let nowDate = new Date();
+        let today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+
+        let endday = new Date(nowDate.getFullYear(), nowDate.getMonth()+2, nowDate.getDate(), 0, 0, 0, 0);
+
+
+
+        let registerpost_url="{{ url('frontend/customerbooking/getBookingDate') }}";
+        let booked_dates=[];
+
+        $("#checkin").prop('disabled', true);
+        $("#checkout").prop('disabled', true);
+
+
+
+
+        $("#select_roomtype").on("change",function(e){
+
+
+            $.ajax({
+                url:registerpost_url,
+                type:"POST",
+                headers:{'X-CSRF-Token':$('input[name=_token]').val()},
+                data: {roomtype:$(this).val()},
+                cache: false,           // To unable request pages to be cached
+                success:function(data)
+                {
+
+                    $("#checkin").prop('disabled', false);
+                    $("#checkout").prop('disabled', false);   
+
+
+                    
+                    console.log(data);
+                    
+
+                    $('#sandbox-container .input-group').datepicker('remove');
+
+                    $("#sandbox-container .input-group").datepicker({
+                        format:"yyyy-mm-dd",
+                        autoclose: true,
+                        datesDisabled:data,
+                        startDate: today,
+                        endDate:endday,
+                        maxViewMode: 1
+
+                    });
+
+
+
+
+
+                }
+            });
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+    @endsection

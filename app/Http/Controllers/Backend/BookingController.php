@@ -15,6 +15,7 @@ use App\RoomType;
 use App\BookingDetails;
 use App\Http\Controllers\Backend\TraitsComponent\BookingTraits;
 use Carbon\Carbon;
+
 class BookingController extends Controller
 {
     //Traits decleration
@@ -125,6 +126,17 @@ class BookingController extends Controller
 
     }
 
+    function getAjax(Request $request){
+      if($request->ajax()){
+        $booking_id=(int)$request->input("id");
 
+        $booking_data=Booking::where("id",$booking_id)->with("room")->first();
+
+        $booking_data->
+
+        return response($booking_data);
+      }
+
+    }
 
 }
