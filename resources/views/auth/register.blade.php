@@ -9,7 +9,7 @@
     <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo">
-            <a href="{{ url('/home') }}"><b>Hotel</b>Reservation</a>
+            <a href="{{ url('/auth/register') }}"><b>Hotel</b>Reservation</a>
         </div>
 
         @if (count($errors) > 0)
@@ -66,7 +66,7 @@
 
             @include('auth.partials.social_login')
 
-            <a href="{{ url('/login') }}" class="text-center">{{ trans('adminlte_lang::message.membreship') }}</a>
+            <a href="{{ url('/auth/login') }}" class="text-center">{{ trans('adminlte_lang::message.membreship') }}</a>
         </div><!-- /.form-box -->
     </div><!-- /.register-box -->
 

@@ -53,7 +53,7 @@
 
                                                     <td>
                                                     {{-- change the directory instead of saving directory to database! --}}
-                                                    	<img src="{{ asset($roomtype->image) }}" width="100px" height="50px">
+                                                    	<img src="{{ asset('img/frontendrooms/'.$roomtype->image) }}" width="100px" height="50px">
                                                     </td>
 
                                                     <td>    <form action="{{ route('backend.roomtype.edit',['id'=>$roomtype->id]) }}"   method="GET">  

@@ -38,11 +38,13 @@ use App\RoomType;
   }
 
   public function edit($id)
-  {
+  { 
 
-    $roomtypes = Role::findOrFail($id);
 
-    return view('backend.roomtypes.edit', compact('roomtypes'));
+
+    $roomtypes = RoomType::findOrFail($id);
+
+    return view('backend.roomtypes.edit',compact($roomtypes));
   }
 
 
@@ -50,14 +52,19 @@ use App\RoomType;
   {
 
     
-    //check the post method if ($request->isMethod('post')) {
+   if ($request->isMethod('post')) {
 
 
     $imageName = $request->file('image')->getClientOriginalName();
     $data_create=["name"=>$request->input('name'),"features"=>$request->input('features'),"bed_no"=>(int)$request->input('bed_no'),"count"=>(int)$request->input('count'),"price"=>(double)$request->input('price'),"image"=>$imageName];
     
     $path = base_path() . '/public/img/frontendrooms/';
-    // chmod
+
+    if(!file_exists($path))
+        {
+            mkdir($path,0777,true);
+        }
+
     $request->file('image')->move($path , $imageName);
     
 
@@ -66,23 +73,25 @@ use App\RoomType;
       return redirect()->route('backend.roomtype.index');
     }
 
-    // end of method
-  }
+   }
+  
+}
 
 
   public function update(RoomTypesRequest $request, $id)
   {
-    $roomtypes = Role::findOrFail($id);
+    dd($id);
+    // $roomtypes = RoomType::findOrFail($id);
 
-    $roomtypes->update($request->all());
+    // $roomtypes->update($request->all());
 
     
-    return redirect()->route('backend.roomtype.index');
+    // return redirect()->route('backend.roomtype.index');
   }
 
   public function destroy($id)
   {
-    $roomtypes = Role::findOrFail($id);
+    $roomtypes = RoomType::findOrFail($id);
 
     $roomtypes->delete();
 

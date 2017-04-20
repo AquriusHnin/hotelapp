@@ -16,6 +16,12 @@
 // });
 
 Route::get('/','Auth\AuthController@getlogin');
+Route::post('/','Auth\AuthController@postlogin');
+Route::get('auth/login','Auth\AuthController@getlogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 
 Route::group(['prefix'=>"frontend"],function()
@@ -68,7 +74,7 @@ Route::group(['prefix'=>"backend",'middleware'=>['auth']],
 		Route::resource('roomtype','Backend\RoomTypesController');
 		Route::resource('account','Backend\AccountsController');
 		
-		
+		Route::post('roomtype/{id}/edit',['as'=>"backend.roomtype.update","uses"=>"Backend\RoomTypesController@update"]);
 
 		// get
 		Route::get('/',['as'=>'backend.index','uses'=>'HomeController@index']);
