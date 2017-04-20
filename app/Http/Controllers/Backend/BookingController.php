@@ -130,13 +130,28 @@ class BookingController extends Controller
       if($request->ajax()){
         $booking_id=(int)$request->input("id");
 
+        //update the booking status
+        DB::transaction(function () use ($booking_id) {
+          DB::table('bookings')->where("id",$booking_id)->update(['status' => 2]);
+         
+
+        });
+
+
+
         $booking_data=Booking::where("id",$booking_id)->with("room")->first();
+        $roomtype=$booking_data->room->roomtypes_id;
+        $booking_count=BookingDetails::where("booking_id",$booking_id)->count();
+        $roomtype=RoomType::select("price")->where('id',$roomtype)->first();
 
-        $booking_data->
+        $return_price=$booking_count*$roomtype->price;
 
-        return response($booking_data);
+        return response($return_price);
       }
 
     }
+
+
+
 
 }

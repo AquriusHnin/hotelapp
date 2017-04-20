@@ -141,23 +141,27 @@
                 <tr>
                     <td>BarServices</td>
                     <td>
-                        <select>
-                            <option>hidagagd</option>
-                            <option>hidagdag</option>
-                            <option>hidgadg</option>
+
+                        <select multiple id="services_data">
+                            
                         </select>
+
+                        <button id="services">Click</button>
                     </td>
+                </tr>
+                <tr id="hi">
+                   
                 </tr>
                 <tr>
                     <td>Total</td>
-                    <td>50000</td>
+                    <td id="total"></td>
                 </tr>
             </table>
         </div>
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal" id="close">Close</button>
   </div>
 
 </div>
@@ -171,11 +175,36 @@
 <script>
     "use strict";
     let invoicepost_url="{{ url('backend/booking/getAjax') }}";
-    
+    let services={"Drinks":200,"Snack":300,"Wine":600,"CockTail":700,"BeefSteak":100};
+    let barservice_price=0;
+    let room_price=0
+    $("#services").on("click",function(e){
+        let data=$("#services_data").val();
 
+        console.log(data);
+        $.each(data,function(key,value){
+            value=parseInt(value);
+            barservice_price=barservice_price+value;
+            
+        });       
+
+        $("#total").html(barservice_price+parseInt(room_price));
+
+
+    });
+
+    $("#close").on("click",function(e){
+        location.reload();
+    });
 
     $(".checkout").on("click",function(e){
         let Id = $(this).data('id');
+
+        
+
+        $.each( services, function( key, value ) {
+            $("#services_data").append( "<option value='"+value+"'>"+key+"</option>" );
+        });
 
          $.ajax({
                 url:invoicepost_url,
@@ -183,16 +212,15 @@
                 headers:{'X-CSRF-Token':$('input[name=_token]').val()},
                 data: {id:Id},
                 cache: false,       // To unable request pages to be cached
-                success:function(data)
+                success:function(room_fees)
                 {
-
-                   
-                    console.log(data);
-
-
+                    room_price=room_fees;
+                    $("#room_fees").html(room_fees);
 
                 }
             });
+
+
 
      });
     
