@@ -124,6 +124,7 @@ $("#checkout").prop('disabled', true);
                         $('#sandbox-container .input-group').datepicker('remove');
 
                         $("#sandbox-container .input-group").datepicker({
+                            
                         format:"yyyy-mm-dd",
                         autoclose: true,
                         datesDisabled:data,

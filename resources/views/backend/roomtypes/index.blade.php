@@ -56,14 +56,7 @@
                                                     	<img src="{{ asset('img/frontendrooms/'.$roomtype->image) }}" width="100px" height="50px">
                                                     </td>
 
-                                                    <td>    <form action="{{ route('backend.roomtype.edit',['id'=>$roomtype->id]) }}"   method="GET">  
-                                                    
-                                                        <button class="btn btn-warning">
-                                                                <i class="fa fa-btn fa-edit"></i>Edit
-                                                        </button>
-
-                                                            {{ csrf_field() }}  </form>  
-                                                    </td>
+                                                   
 
                                                     <td>    <form action="{{ route('backend.roomtype.destroy',['id'=>$roomtype->id]) }}" method="POST">  
                                                     

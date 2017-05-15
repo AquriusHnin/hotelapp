@@ -10,6 +10,7 @@ trait BookingTraits{
 		$days=array();
 		$interval="1 day";
 		$start = \DateTime::createFromFormat('Y-m-d', $start_month);
+		
 		$end = \DateTime::createFromFormat('Y-m-d', $end_month);
 
 		$interval = \DateInterval::createFromDateString($interval);

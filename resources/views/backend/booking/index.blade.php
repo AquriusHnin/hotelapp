@@ -71,12 +71,7 @@
                         <td>{{  $booking->check_out }}</td>
 
 
-                        <td>    
-
-
-
-
-                        </br>
+                        <td>
 
                         <form action="{{ route('backend.booking.destroy',['id'=>$booking->id]) }}" method="POST">  
 
@@ -87,6 +82,8 @@
                             {{ csrf_field() }}
 
                             {{ method_field('DELETE') }}
+
+                          </td>
                         </form>   
 
                     </td> 
@@ -135,11 +132,11 @@
           <div class="table-responsive">
             <table class="table">
                 <tr>
-                    <td>Roomfees</td>
+                    <td>Roomfees ($)</td>
                     <td id="room_fees"></td>
                 </tr>
                 <tr>
-                    <td>BarServices</td>
+                    <td>BarServices ($)</td>
                     <td>
 
                         <select multiple id="services_data">
@@ -153,7 +150,7 @@
                    
                 </tr>
                 <tr>
-                    <td>Total</td>
+                    <td>Total ($)</td>
                     <td id="total"></td>
                 </tr>
             </table>
@@ -181,7 +178,7 @@
     $("#services").on("click",function(e){
         let data=$("#services_data").val();
 
-        console.log(data);
+        
         $.each(data,function(key,value){
             value=parseInt(value);
             barservice_price=barservice_price+value;
